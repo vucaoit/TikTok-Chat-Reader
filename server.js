@@ -15,7 +15,7 @@ const io = new Server(httpServer, {
         origin: '*'
     }
 });
-let tiktokUsername = "chentrakientran";
+let tiktokUsername = "teaculture18";
     const { WebcastPushConnection } = require('tiktok-live-connector');
     let tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
 tiktokLiveConnection.connect().then(state => {
@@ -86,11 +86,9 @@ io.on('connection', (socket) => {
     //     tiktokConnectionWrapper.connection.on('subscribe', msg => socket.emit('subscribe', msg));
     // });
 
-    // socket.on('disconnect', () => {
-    //     if (tiktokConnectionWrapper) {
-    //         tiktokConnectionWrapper.disconnect();
-    //     }
-    // });
+    socket.on('disconnect', () => {
+        console.log("disconnect");
+    });
 });
 
 // Emit global connection statistics
