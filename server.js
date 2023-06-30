@@ -24,9 +24,17 @@ tiktokLiveConnection.connect().then(state => {
     console.error('Failed to connect', err);
 })
 tiktokLiveConnection.on('chat', data => {
-    console.log(`${data.nickname} : ${data.comment}`);
-    io.emit('message', `{"nickname":"${data.nickname}","comment":"${data.comment}"}`);
+   console.log(`${data.nickname} : ${data.comment}`)
+    io.emit('comment', convertToJson(data))
 })
+function convertToJson(data){
+return `
+{
+    "nickname":"${data.nickname}",
+    "profilePictureUrl":"${data.profilePictureUrl}",
+    "comment":"${data.comment}"
+}
+`;
 io.on('connection', (socket) => {
     // let tiktokConnectionWrapper;
 
