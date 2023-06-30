@@ -35,6 +35,7 @@ return `
     "comment":"${data.comment}"
 }
 `;
+}
 io.on('connection', (socket) => {
     // let tiktokConnectionWrapper;
 
