@@ -15,7 +15,7 @@ const io = new Server(httpServer, {
         origin: '*'
     }
 });
-let tiktokUsername = "teaculture18";
+let tiktokUsername = "nhanpt94";
     const { WebcastPushConnection } = require('tiktok-live-connector');
     let tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
 tiktokLiveConnection.connect().then(state => {
