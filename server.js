@@ -5,7 +5,6 @@ const { createServer } = require('http');
 const { Server } = require('socket.io');
 const { TikTokConnectionWrapper, getGlobalConnectionCount } = require('./connectionWrapper');
 const { clientBlocked } = require('./limiter');
-let tiktokUsername = "ducnguyen37999";
 
 const app = express();
 const httpServer = createServer(app);
@@ -19,7 +18,7 @@ const io = new Server(httpServer, {
 
 
 io.on('connection', (socket) => {
-    socket.on('setUserName',(data)=>tiktokUsername=data);
+    let tiktokUsername = "chentrakientran";
     const { WebcastPushConnection } = require('tiktok-live-connector');
     let tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
     tiktokLiveConnection.connect().then(state => {
