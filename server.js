@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
         console.error('Failed to connect', err);
     })
     tiktokLiveConnection.on('chat', data => {
-        // console.log(`${data.uniqueId} (userId:${data.userId}) writes: ${data.comment}`);
+        console.log(`${data.nickname} : ${data.comment}`);
         io.emit('message', `{"nickname":"${data.nickname}","comment":"${data.comment}"}`);
     })
     // let tiktokConnectionWrapper;
