@@ -16,20 +16,20 @@ const io = new Server(httpServer, {
     }
 });
 
-
+tiktokLiveConnection.connect().then(state => {
+    console.info(`Connected to roomId ${state.roomId}`);
+}).catch(err => {
+    console.error('Failed to connect', err);
+})
+tiktokLiveConnection.on('chat', data => {
+    console.log(`${data.nickname} : ${data.comment}`);
+    io.emit('message', `{"nickname":"${data.nickname}","comment":"${data.comment}"}`);
+})
 io.on('connection', (socket) => {
     let tiktokUsername = "chentrakientran";
     const { WebcastPushConnection } = require('tiktok-live-connector');
     let tiktokLiveConnection = new WebcastPushConnection(tiktokUsername);
-    tiktokLiveConnection.connect().then(state => {
-        console.info(`Connected to roomId ${state.roomId}`);
-    }).catch(err => {
-        console.error('Failed to connect', err);
-    })
-    tiktokLiveConnection.on('chat', data => {
-        console.log(`${data.nickname} : ${data.comment}`);
-        io.emit('message', `{"nickname":"${data.nickname}","comment":"${data.comment}"}`);
-    })
+    
     // let tiktokConnectionWrapper;
 
     // console.info('New connection from origin', socket.handshake.headers['origin'] || socket.handshake.headers['referer']);
